@@ -6,8 +6,11 @@ import os
 import joblib
 from dotenv import load_dotenv
 from groq import Groq
+from pathlib import Path
 
-load_dotenv(dotenv_path="../.env", override=True)
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(dotenv_path=BASE_DIR / ".env", override=True)
 
 st.set_page_config(page_title="Live Churn Predictor", page_icon="🔮", layout="wide")
 st.title("🔮 Live Churn Predictor")
@@ -16,25 +19,31 @@ st.markdown("Enter customer details to predict churn risk and get an AI-generate
 @st.cache_data
 def load_medians():
     conn = psycopg2.connect(
-    host=os.getenv("DB_HOST"),
-    dbname=os.getenv("DB_NAME"),
-    user=os.getenv("DB_USER"),
-    password=os.getenv("DB_PASS"),
-    port=os.getenv("DB_PORT"),
-    sslmode="require"
-)
-    
+        host=os.getenv("DB_HOST"),
+        dbname=os.getenv("DB_NAME"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASS"),
+        port=os.getenv("DB_PORT"),
+        sslmode="require"
+    )
+
     df = pd.read_sql("SELECT balance, estimated_salary FROM customers_bank;", conn)
     conn.close()
-    return df['balance'].median(), df['estimated_salary'].median()
+    return df["balance"].median(), df["estimated_salary"].median()
+
 
 median_balance, median_salary = load_medians()
 
+
 @st.cache_resource
 def load_model_and_scaler():
-    model = joblib.load("../models/random_forest_churn_model.pkl")
-    scaler = joblib.load("../models/scaler.pkl")
+    MODEL_DIR = BASE_DIR / "models"
+
+    model = joblib.load(MODEL_DIR / "random_forest_churn_model.pkl")
+    scaler = joblib.load(MODEL_DIR / "scaler.pkl")
+
     return model, scaler
+
 
 model, scaler = load_model_and_scaler()
 
@@ -59,12 +68,15 @@ with col3:
     has_cr_card = st.selectbox("Has Credit Card?", ["Yes", "No"])
     is_active_member = st.selectbox("Is Active Member?", ["Yes", "No"])
 
+
 if st.button("Predict Churn Risk", type="primary"):
     has_cr_card_val = 1 if has_cr_card == "Yes" else 0
     is_active_val = 1 if is_active_member == "Yes" else 0
 
     balance_salary_ratio = balance / estimated_salary if estimated_salary != 0 else 0
-    high_value_customer = int((balance > median_balance) and (estimated_salary > median_salary))
+    high_value_customer = int(
+        (balance > median_balance) and (estimated_salary > median_salary)
+    )
     engagement_score = has_cr_card_val + is_active_val + num_of_products
 
     geography_Germany = 1 if geography == "Germany" else 0
@@ -98,11 +110,13 @@ if st.button("Predict Churn Risk", type="primary"):
     st.subheader("Prediction Result")
 
     col1, col2 = st.columns(2)
+
     with col1:
         if prediction == 1:
-            st.error(f"⚠️ **High Churn Risk**")
+            st.error("⚠️ **High Churn Risk**")
         else:
-            st.success(f"✅ **Low Churn Risk**")
+            st.success("✅ **Low Churn Risk**")
+
     with col2:
         st.metric("Churn Probability", f"{probability:.1f}%")
 
@@ -136,6 +150,7 @@ retention actions if the risk is high, or engagement actions if the risk is low.
             model="openai/gpt-oss-120b",
             messages=[{"role": "user", "content": prompt}]
         )
+
         insight = response.choices[0].message.content
 
     st.markdown(insight)
