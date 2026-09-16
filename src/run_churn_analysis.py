@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import os
+import psycopg2
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 import joblib
@@ -11,10 +12,16 @@ from scipy.stats import chi2_contingency, ttest_ind
 load_dotenv(".env")
 
 def load_data():
-    engine = create_engine(
-        f'postgresql://{os.getenv("DB_USER")}:{os.getenv("DB_PASS")}@{os.getenv("DB_HOST")}:{os.getenv("DB_PORT")}/{os.getenv("DB_NAME")}'
+    conn = psycopg2.connect(
+        host=os.getenv("DB_HOST"),
+        dbname=os.getenv("DB_NAME"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASS"),
+        port=os.getenv("DB_PORT"),
+        sslmode="require"
     )
-    df = pd.read_sql("SELECT * FROM customers_bank", engine)
+    df = pd.read_sql("SELECT * FROM customers_bank", conn)
+    conn.close()
     return df
 
 def feature_engineer(df):

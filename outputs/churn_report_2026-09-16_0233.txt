@@ -1,0 +1,60 @@
+**Business Report – Customer Churn Insights**  
+*Prepared for Bank Leadership*  
+*Date: 15 Sep 2026*  
+
+---
+
+## 1. Executive Summary  
+
+- **Current churn level:** 20.37 % of the 10 000‑customer base are leaving the bank.  
+- **Predictive analytics:** A Random‑Forest model (F1 = 0.60, Precision = 80 %, Recall = 48 %) flags **1 876 customers** (≈ 19 % of the portfolio) as high‑risk for churn, with an average predicted churn probability of **20.45 %** – essentially mirroring the observed overall churn rate.  
+- **Statistically significant drivers:**  
+  - **Geography** – Germany churn rate (32.44 %) is twice the French (16.15 %) and Spanish (16.67 %) rates (p < 0.001).  
+  - **Gender** – Female customers churn at 25.07 % vs. 16.46 % for males (p < 0.001).  
+  - **Age** – The 51‑60 age segment exhibits an alarming 56.21 % churn rate (p < 0.001).  
+
+These findings point to clear, high‑impact segments where targeted retention interventions can materially reduce overall churn and protect revenue.
+
+---
+
+## 2. Key Findings  
+
+| Segment | Observed Churn | Statistical Significance | Business Implication |
+|---------|----------------|---------------------------|----------------------|
+| **Geography** | Germany 32.44 % <br> France 16.15 % <br> Spain 16.67 % | p = 0.0000 | German market is a churn hotspot; French and Spanish markets are relatively stable. |
+| **Gender** | Female 25.07 % <br> Male 16.46 % | p = 0.0000 | Female customers are 1.5× more likely to leave. |
+| **Age (51‑60)** | 56.21 % | p = 0.0000 | More than half of customers in this age band are at risk – a critical revenue‑drain segment. |
+| **Model‑identified high‑risk** | 1 876 customers (19 % of base) | Precision 80 % → 1 501 true churners expected; Recall 48 % → 48 % of all churners captured | The model reliably isolates a subset where retention spend will have the highest ROI. |
+| **Overall churn vs. predicted probability** | 20.37 % observed vs. 20.45 % predicted average | Close alignment validates model calibration. | Confirms model usefulness for prioritization. |
+
+---
+
+## 3. Actionable Recommendations  
+
+### 3.1 Prioritize High‑Risk Segments
+| Priority | Target | Rationale | Immediate Tactics |
+|----------|--------|-----------|-------------------|
+| **Tier 1 – Age 51‑60 (all geographies)** | Customers 51‑60 (≈ 1 200 accounts) | > 50 % churn rate; represents the largest single loss driver. | • Conduct exit‑interview surveys to identify pain points.<br>• Offer tailored product bundles (e.g., wealth‑management, retirement planning).<br>• Assign dedicated relationship managers for proactive outreach. |
+| **Tier 2 – German market** | All German customers (≈ 2 500 accounts) | Churn > 30 % – double the overall rate. | • Launch a “German Loyalty Program” with localized incentives (e.g., fee waivers, higher interest on deposits).<br>• Deploy a localized digital onboarding experience to reduce friction.<br>• Review pricing and service level agreements specific to German regulations. |
+| **Tier 3 – Female customers** | Female segment (≈ 5 200 accounts) | 25 % churn – 1.5× male rate. | • Introduce women‑focused financial education webinars.<br>• Promote products aligned with life‑stage needs (e.g., maternity loans, flexible savings).<br>• Track NPS by gender to monitor sentiment changes. |
+
+### 3.2 Leverage Predictive Model for Efficient Retention Spend  
+1. **Targeted Campaigns:** Deploy the model’s high‑risk list (1 876 customers) to a “win‑back” outreach program.  
+   - **Expected impact:** With 80 % precision, ~1 500 of these contacts will churn without intervention. Converting just 20 % of them saves ~300 customers (≈ 1.5 % of total base).  
+2. **Model Enrichment:**  
+   - Incorporate additional variables (e.g., product usage frequency, digital channel adoption) to boost recall beyond 48 % while maintaining precision.  
+   - Schedule quarterly model retraining to capture emerging trends.  
+
+### 3.3 Monitoring & Governance  
+- **Dashboard:** Implement a real‑time churn risk dashboard segmented by geography, gender, and age.  
+- **KPIs:** Track (a) churn reduction % per segment, (b) ROI of retention campaigns (cost per saved customer), (c) model performance metrics (precision, recall, calibration drift).  
+- **Governance:** Assign a cross‑functional “Churn Steering Committee” (Risk, Marketing, Product, Data Science) to review monthly reports and approve budget allocations for targeted interventions.  
+
+### 3.4 Resource Allocation  
+- **Budget Recommendation:** Allocate **€1.2 M** for the first 12‑month rollout (≈ €650 k for German market actions, €350 k for age‑51‑60 initiatives, €200 k for gender‑focused programs). Expected churn reduction of **3‑4 %** (≈ 300‑400 customers) would preserve **€5‑7 M** in annual revenue (assuming average revenue per customer of €20 k).  
+
+---
+
+## 4. Conclusion  
+
+The combination of statistically validated churn drivers and a high‑precision predictive model provides a clear roadmap for immediate, high‑impact retention actions. By concentrating efforts on the 51‑60 age group, the German geography, and female customers—while also activating the model‑identified high‑risk list—the bank can achieve a measurable reduction in churn, protect revenue, and strengthen customer lifetime value. Prompt execution of the recommendations and ongoing monitoring will be essential to sustain gains and adapt to evolving customer behavior.  
