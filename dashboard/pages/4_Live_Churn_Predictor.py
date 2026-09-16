@@ -8,14 +8,23 @@ from dotenv import load_dotenv
 from groq import Groq
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-MODEL_DIR = BASE_DIR / "models"
+# Project root: Banking Churn analysis and prediction/
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
+# Load .env from project root
 load_dotenv(dotenv_path=BASE_DIR / ".env", override=True)
 
-st.set_page_config(page_title="Live Churn Predictor", page_icon="🔮", layout="wide")
+st.set_page_config(
+    page_title="Live Churn Predictor",
+    page_icon="🔮",
+    layout="wide"
+)
+
 st.title("🔮 Live Churn Predictor")
-st.markdown("Enter customer details to predict churn risk and get an AI-generated retention insight.")
+st.markdown(
+    "Enter customer details to predict churn risk and get an AI-generated retention insight."
+)
+
 
 @st.cache_data
 def load_medians():
@@ -28,9 +37,17 @@ def load_medians():
         sslmode="require"
     )
 
-    df = pd.read_sql("SELECT balance, estimated_salary FROM customers_bank;", conn)
+    df = pd.read_sql(
+        "SELECT balance, estimated_salary FROM customers_bank;",
+        conn
+    )
+
     conn.close()
-    return df["balance"].median(), df["estimated_salary"].median()
+
+    return (
+        df["balance"].median(),
+        df["estimated_salary"].median()
+    )
 
 
 median_balance, median_salary = load_medians()
@@ -40,45 +57,114 @@ median_balance, median_salary = load_medians()
 def load_model_and_scaler():
     MODEL_DIR = BASE_DIR / "models"
 
-    model = joblib.load(MODEL_DIR / "random_forest_churn_model.pkl")
-    scaler = joblib.load(MODEL_DIR / "scaler.pkl")
+    model_path = MODEL_DIR / "random_forest_churn_model.pkl"
+    scaler_path = MODEL_DIR / "scaler.pkl"
+
+    model = joblib.load(model_path)
+    scaler = joblib.load(scaler_path)
 
     return model, scaler
 
 
 model, scaler = load_model_and_scaler()
 
+
 st.markdown("---")
 st.subheader("Customer Details")
 
 col1, col2, col3 = st.columns(3)
 
+
 with col1:
-    geography = st.selectbox("Geography", ["France", "Germany", "Spain"])
-    gender = st.selectbox("Gender", ["Female", "Male"])
-    age = st.number_input("Age", min_value=18, max_value=100, value=35)
+    geography = st.selectbox(
+        "Geography",
+        ["France", "Germany", "Spain"]
+    )
+
+    gender = st.selectbox(
+        "Gender",
+        ["Female", "Male"]
+    )
+
+    age = st.number_input(
+        "Age",
+        min_value=18,
+        max_value=100,
+        value=35
+    )
+
 
 with col2:
-    credit_score = st.number_input("Credit Score", min_value=300, max_value=900, value=650)
-    balance = st.number_input("Balance ($)", min_value=0.0, value=50000.0, step=1000.0)
-    estimated_salary = st.number_input("Estimated Salary ($)", min_value=0.0, value=60000.0, step=1000.0)
+    credit_score = st.number_input(
+        "Credit Score",
+        min_value=300,
+        max_value=900,
+        value=650
+    )
+
+    balance = st.number_input(
+        "Balance ($)",
+        min_value=0.0,
+        value=50000.0,
+        step=1000.0
+    )
+
+    estimated_salary = st.number_input(
+        "Estimated Salary ($)",
+        min_value=0.0,
+        value=60000.0,
+        step=1000.0
+    )
+
 
 with col3:
-    tenure = st.slider("Tenure (years)", 0, 10, 5)
-    num_of_products = st.slider("Number of Products", 1, 4, 2)
-    has_cr_card = st.selectbox("Has Credit Card?", ["Yes", "No"])
-    is_active_member = st.selectbox("Is Active Member?", ["Yes", "No"])
+    tenure = st.slider(
+        "Tenure (years)",
+        0,
+        10,
+        5
+    )
+
+    num_of_products = st.slider(
+        "Number of Products",
+        1,
+        4,
+        2
+    )
+
+    has_cr_card = st.selectbox(
+        "Has Credit Card?",
+        ["Yes", "No"]
+    )
+
+    is_active_member = st.selectbox(
+        "Is Active Member?",
+        ["Yes", "No"]
+    )
 
 
 if st.button("Predict Churn Risk", type="primary"):
+
     has_cr_card_val = 1 if has_cr_card == "Yes" else 0
     is_active_val = 1 if is_active_member == "Yes" else 0
 
-    balance_salary_ratio = balance / estimated_salary if estimated_salary != 0 else 0
-    high_value_customer = int(
-        (balance > median_balance) and (estimated_salary > median_salary)
+    balance_salary_ratio = (
+        balance / estimated_salary
+        if estimated_salary != 0
+        else 0
     )
-    engagement_score = has_cr_card_val + is_active_val + num_of_products
+
+    high_value_customer = int(
+        (balance > median_balance)
+        and
+        (estimated_salary > median_salary)
+    )
+
+    engagement_score = (
+        has_cr_card_val
+        + is_active_val
+        + num_of_products
+    )
 
     geography_Germany = 1 if geography == "Germany" else 0
     geography_Spain = 1 if geography == "Spain" else 0
@@ -102,15 +188,22 @@ if st.button("Predict Churn Risk", type="primary"):
     }])
 
     input_df = input_df[model.feature_names_in_]
+
     input_scaled = scaler.transform(input_df)
 
     prediction = model.predict(input_scaled)[0]
-    probability = model.predict_proba(input_scaled)[0][1] * 100
+
+    probability = (
+        model.predict_proba(input_scaled)[0][1]
+        * 100
+    )
+
 
     st.markdown("---")
     st.subheader("Prediction Result")
 
     col1, col2 = st.columns(2)
+
 
     with col1:
         if prediction == 1:
@@ -118,14 +211,23 @@ if st.button("Predict Churn Risk", type="primary"):
         else:
             st.success("✅ **Low Churn Risk**")
 
+
     with col2:
-        st.metric("Churn Probability", f"{probability:.1f}%")
+        st.metric(
+            "Churn Probability",
+            f"{probability:.1f}%"
+        )
+
 
     st.markdown("---")
     st.subheader("AI-Generated Insight")
 
+
     with st.spinner("Generating personalized insight..."):
-        client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+
+        client = Groq(
+            api_key=os.getenv("GROQ_API_KEY")
+        )
 
         prompt = f"""You are a bank customer retention analyst. A machine learning model 
 predicted the following customer has a {probability:.1f}% probability of churning 
@@ -149,9 +251,15 @@ retention actions if the risk is high, or engagement actions if the risk is low.
 
         response = client.chat.completions.create(
             model="openai/gpt-oss-120b",
-            messages=[{"role": "user", "content": prompt}]
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ]
         )
 
         insight = response.choices[0].message.content
+
 
     st.markdown(insight)
