@@ -51,11 +51,11 @@ st.markdown("""
 st.markdown("---")
 st.subheader("Navigate Using the Sidebar")
 st.markdown("""
-- 📊 **EDA Dashboard** — visual exploration of churn patterns
-- 📈 **Statistical Insights** — hypothesis test results
-- 🤖 **Model Performance** — model comparison + feature importance
-- 🔮 **Live Predictor** — enter customer details, get churn prediction + AI-generated insight
-- 💼 **Business Recommendations** — actionable strategy based on findings
+-  **EDA Dashboard** — visual exploration of churn patterns
+-  **Statistical Insights** — hypothesis test results
+-  **Model Performance** — model comparison + feature importance
+-  **Live Predictor** — enter customer details, get churn prediction + AI-generated insight
+-  **Business Recommendations** — actionable strategy based on findings
 """)
 
 st.markdown("---")

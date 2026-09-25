@@ -16,7 +16,6 @@ load_dotenv(dotenv_path=BASE_DIR / ".env", override=True)
 
 st.set_page_config(
     page_title="Live Churn Predictor",
-    page_icon="🔮",
     layout="wide"
 )
 
