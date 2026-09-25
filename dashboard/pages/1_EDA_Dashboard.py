@@ -10,7 +10,7 @@ load_dotenv(dotenv_path="../.env", override=True)
 
 
 st.set_page_config(page_title="EDA Dashboard", page_icon="📊", layout="wide")
-st.title("📊 EDA Dashboard")
+st.title("EDA Dashboard")
 
 @st.cache_data
 def load_data():

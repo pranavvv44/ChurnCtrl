@@ -21,7 +21,7 @@ from sklearn.metrics import (
 load_dotenv(dotenv_path="../.env", override=True)
 
 st.set_page_config(page_title="Model Performance", page_icon="🤖", layout="wide")
-st.title("🤖 Model Performance")
+st.title("Model Performance")
 st.markdown("Comparison of 5 classification models trained to predict customer churn.")
 
 @st.cache_data

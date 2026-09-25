@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv(dotenv_path="../.env", override=True)
 
 st.set_page_config(page_title="Business Recommendations", page_icon="💼", layout="wide")
-st.title("💼 Business Recommendations")
+st.title(" Business Recommendations")
 st.markdown("Translating statistical findings and model insights into actionable retention strategy.")
 
 @st.cache_data

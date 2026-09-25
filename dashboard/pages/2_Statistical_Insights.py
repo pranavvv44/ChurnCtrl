@@ -8,7 +8,7 @@ from scipy import stats
 load_dotenv(dotenv_path="../.env", override=True)
 
 st.set_page_config(page_title="Statistical Insights", page_icon="📈", layout="wide")
-st.title("📈 Statistical Insights")
+st.title("Statistical Insights")
 st.markdown("Hypothesis testing confirms which factors are *statistically significant* drivers of churn.")
 
 @st.cache_data
