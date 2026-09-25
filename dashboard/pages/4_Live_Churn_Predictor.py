@@ -19,7 +19,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("🔮 Live Churn Predictor")
+st.title(" Live Churn Predictor")
 st.markdown(
     "Enter customer details to predict churn risk and get an AI-generated retention insight."
 )
