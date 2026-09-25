@@ -1,4 +1,4 @@
-# 🏦 ChurnCtrl
+#  ChurnCtrl
 
 ## Predictive Banking Customer Churn Analysis and Retention Insights Platform
 
@@ -8,7 +8,7 @@ Combines **Python, SQL, statistical analysis, machine learning, automated AI ins
 
 ---
 
-## 🎯 Business Problem
+##  Business Problem
 
 A bank has identified an overall customer churn rate of **20.37%** and is concerned about its impact on revenue, since acquiring new customers costs significantly more than retaining existing ones.
 
@@ -27,7 +27,7 @@ The analytics team needs to determine:
 
 ---
 
-## 🏗️ Project Architecture
+##  Project Architecture
 
 <img width="1062" height="596" alt="image" src="https://github.com/user-attachments/assets/072a633f-0d2f-4e96-9b11-faf01b32e6a1" />
 
@@ -60,7 +60,7 @@ flowchart LR
 
 ---
 
-## 📊 Dataset
+##  Dataset
 
 - **Records:** 10,000
 - **Features:** 14
@@ -93,7 +93,7 @@ Represents whether customer has churned.
 
 ---
 
-## 🛠️ Tools & Technologies
+##  Tools & Technologies
 
 | Technology | Purpose |
 |---|---|
@@ -112,7 +112,7 @@ Represents whether customer has churned.
 
 ---
 
-## 🔄 Project Workflow
+##  Project Workflow
 
 ```text
 Raw Banking Customer Dataset
@@ -140,7 +140,7 @@ Live Churn Prediction
 
 ---
 
-# 1️⃣ Data Loading & Exploratory Data Analysis
+# 1️ Data Loading & Exploratory Data Analysis
 
 Dataset initially loaded into Python using **Pandas**.
 
@@ -160,7 +160,7 @@ Dataset initially loaded into Python using **Pandas**.
 
 ---
 
-# 2️⃣ Data Cleaning & Preparation
+# 2️ Data Cleaning & Preparation
 
 Data preparation performed before SQL analysis and machine learning.
 
@@ -178,7 +178,7 @@ Processed customer data then used for SQL analysis, statistical analysis, and ma
 
 ---
 
-# 3️⃣ Database Integration
+# 3️ Database Integration
 
 Processed customer data integrated with **PostgreSQL** for structured business analysis.
 
@@ -196,7 +196,7 @@ Risk Analysis
 
 ---
 
-# 4️⃣ SQL Business Analysis
+# 4️ SQL Business Analysis
 
 SQL used to investigate churn across customer characteristics and business dimensions.
 
@@ -244,7 +244,7 @@ Investigated whether combinations such as **female + German** customers show dif
 
 ---
 
-# 5️⃣ Statistical Analysis
+# 5️ Statistical Analysis
 
 Statistical analysis performed to determine whether observed differences across customer groups are statistically meaningful.
 
@@ -261,7 +261,7 @@ Statistical testing provides additional evidence for interpreting observed churn
 
 ---
 
-# 6️⃣ Machine Learning — Churn Prediction
+# 6️ Machine Learning — Churn Prediction
 
 Classification-based machine learning pipeline developed to predict customer churn.
 
@@ -299,7 +299,7 @@ Trained model and preprocessing scaler stored as serialized artifacts and used b
 
 ---
 
-# 7️⃣ Feature Importance
+# 7️ Feature Importance
 
 Feature importance analyzed to understand which customer characteristics contribute most to model predictions.
 
@@ -311,7 +311,7 @@ Feature importance provides an interpretable connection between machine learning
 
 ---
 
-# 8️⃣ Automated Business Insights
+# 8️ Automated Business Insights
 
 ChurnCtrl integrates **Groq** to convert analytical outputs into business-ready insights.
 
@@ -326,22 +326,22 @@ This connects analytical findings with stakeholder-facing business narratives wh
 
 ---
 
-# 9️⃣ Streamlit Dashboard
+# 9️ Streamlit Dashboard
 
 Final analysis presented through an interactive **Streamlit dashboard**.
 
-### 🌐 Live Application
+###  Live Application
 
 https://churnctrl.streamlit.app/
 
 ### Dashboard Modules
 
-- 🏠 **Home** — Project overview and business context
-- 📊 **EDA Dashboard** — Interactive customer and churn analysis
-- 📐 **Statistical Insights** — Statistical analysis and significance results
-- 🤖 **Model Performance** — Model metrics and feature importance
-- 🎯 **Live Churn Predictor** — Real-time customer churn prediction
-- 💡 **Business Recommendations** — Automated insights and retention recommendations
+-  **Home** — Project overview and business context
+-  **EDA Dashboard** — Interactive customer and churn analysis
+-  **Statistical Insights** — Statistical analysis and significance results
+-  **Model Performance** — Model metrics and feature importance
+-  **Live Churn Predictor** — Real-time customer churn prediction
+-  **Business Recommendations** — Automated insights and retention recommendations
 
 ### Dashboard Features
 
@@ -357,7 +357,7 @@ https://churnctrl.streamlit.app/
 
 ---
 
-# 🔟 Live Churn Predictor
+#  Live Churn Predictor
 
 Live Churn Predictor converts trained machine learning model into an interactive business-facing tool.
 
@@ -377,39 +377,39 @@ Users can enter customer attributes and generate churn predictions through deplo
 
 ---
 
-# 💡 Business Insights & Recommendations
+#  Business Insights & Recommendations
 
-## 🎯 Risk-Based Retention
+##  Risk-Based Retention
 
 Identify customer segments showing elevated churn risk and prioritize retention efforts accordingly.
 
-## 👤 Age-Based Retention Analysis
+##  Age-Based Retention Analysis
 
 **Age accounts for 22.4% of model feature importance**, making age an important factor for further churn segmentation and retention analysis.
 
-## 🏦 Product & Activity Strategy
+##  Product & Activity Strategy
 
 Analyze customers based on **number of products and activity status** to identify engagement patterns associated with churn.
 
-## 🌍 Geographic Segmentation
+##  Geographic Segmentation
 
 Use geography-level churn patterns to identify locations requiring deeper investigation and potentially targeted retention strategies.
 
-## 📊 Predictive Customer Prioritization
+##  Predictive Customer Prioritization
 
 Use churn predictions to identify customers who may require proactive retention attention.
 
-## 📐 Evidence-Based Decisions
+##  Evidence-Based Decisions
 
 Use statistical testing alongside descriptive analysis to avoid treating random variation as meaningful business patterns.
 
-## 🤖 Automated Reporting
+##  Automated Reporting
 
 Use Groq-powered insight generation to convert analytical results into concise, business-ready observations and recommendations.
 
 ---
 
-# 📁 Project Structure
+#  Project Structure
 
 ```text
 Banking Churn analysis and prediction/
@@ -444,7 +444,7 @@ Banking Churn analysis and prediction/
 
 ---
 
-# ▶️ How to Run
+#  How to Run
 
 ## 1. Clone Repository
 
@@ -469,7 +469,7 @@ Application opens locally through Streamlit.
 
 ---
 
-# 🌐 Deployment
+#  Deployment
 
 ChurnCtrl deployed using **Streamlit Community Cloud**.
 
@@ -479,7 +479,7 @@ https://churnctrl.streamlit.app/
 
 ---
 
-# 📦 Project Deliverables
+#  Project Deliverables
 
 - 🐍 Python/Pandas data analysis
 - 🧹 Data cleaning & preparation
@@ -496,13 +496,13 @@ https://churnctrl.streamlit.app/
 
 ---
 
-# 🚀 Key Skills Demonstrated
+#  Key Skills Demonstrated
 
 **Data Analysis • Data Cleaning • Exploratory Data Analysis • Python • Pandas • NumPy • SQL • PostgreSQL • Statistical Analysis • Machine Learning • Random Forest • Classification • Predictive Analytics • Feature Importance • Streamlit • Plotly • Customer Segmentation • Churn Analysis • Business Intelligence • Automated Analysis • AI Integration • Business Insights • Data Storytelling**
 
 ---
 
-# 👤 Author
+#  Author
 
 **Pranav Sharma**
 
