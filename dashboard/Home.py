@@ -2,12 +2,12 @@ import streamlit as st
 
 st.set_page_config(
     page_title="ChurnCtrl",
-    page_icon="🏦",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-st.title("🏦 ChurnCtrl")
+st.title(" ChurnCtrl")
 st.markdown("### Predictive Banking Customer Churn Analysis and Retention Insights Platform")
 
 st.markdown("""
